@@ -1,0 +1,251 @@
+* {
+    font-family: 'Vollkorn', serif;
+}
+
+.nav_menu {
+    white-space: nowrap;
+    padding: 30px 0;
+}
+
+.logo_menu div {
+    display: block !important;
+    margin: 0 auto;
+}
+
+header {
+    .container {
+        font-size: 0.9Rem;
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+
+        li {
+            text-transform: uppercase;
+            margin-right: 15px;
+
+            a {
+                &.activeMenu {
+                    color: #89ba16 !important;
+                }
+
+                text-decoration: none;
+                margin-right: 15px;
+                color: #040707;
+            }
+        }
+    }
+}
+
+ul.items-end {
+    justify-content: flex-end;
+
+    :last-child {
+        margin: 0;
+    }
+}
+
+.title {
+    color: #040707;
+    font: 700 28px Vollkorn;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+.border-help {
+    color: #292d36;
+    font: 300 14px/18px Vollkorn;
+    padding: 10px 20px;
+    transition: .2s linear;
+    border: 1px solid #e8f3f8;
+    background: #fff;
+    cursor: default;
+    box-shadow: 0 6px 27px #eff8fd;
+	&:hover {
+		box-shadow: inset 0 0 0 5px #e8f3f8;
+	}
+}
+
+.deactive {
+	cursor: default;
+}
+
+/* Ripple effect */
+.ripple {
+	background-position: center;
+	transition: background 0.8s;
+	&:hover {
+	background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+  }
+    &:active {
+	background-color: #6eb9f7;
+	background-size: 100%;
+	transition: background 0s;
+  }
+  }
+  
+  .block_numbers {
+	  .items {
+		display: flex;
+		margin-left: -10px;
+		.item {
+			width: calc(50% - 10px);
+    		margin-left: 10px;
+    		display: flex;
+    		justify-content: space-around;
+    		align-items: center;
+    		padding: 10px 10px;
+		}
+	  }
+  }
+
+
+  
+  /* Button style */
+button {
+	border: none;
+	border-radius: 2px;
+	padding: 12px 18px;
+	font-size: 16px;
+	text-transform: uppercase;
+	cursor: pointer;
+	color: white;
+	background-color: #2196f3;
+	box-shadow: 0 0 4px #999;
+	outline: none;
+	&.disabled {
+		display: none;
+	}
+  }
+// Footer theme
+
+footer {
+	position: relative;
+	z-index: 1;
+	border-top: 2px solid #caebff;
+	background: #f2faff;
+	.container li a {
+    	color: #0994c8;
+    	font: 500 14px/30px Vollkorn;
+    	display: inline-block;
+    	transition: color 0.2s linear;
+    	vertical-align: top;
+    	text-decoration: none;
+		&:hover {
+			color:#000;
+	}
+}
+}
+
+//StepTraker css
+
+.steps {
+  background-color: #d7d7d7;
+  border: 1px solid #d7d7d7;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  .step {
+    background-color: #eee;
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    font-size: 1.4rem;
+    height: 3rem;
+    line-height: 3rem;
+    padding-left: 0.5rem;
+    position: relative;
+    &:not(:first-child) { /* this handles the tail of the arrow */
+      margin-left: 1.7rem;
+      &:before {
+        border-bottom: calc(3rem / 2) solid #eee;
+        border-left: calc(3rem / 2) solid transparent;
+        border-top: calc(3rem / 2) solid #eee;
+        bottom: 0;
+        content: " ";
+        height: 0;
+        position: absolute;
+        left: calc(3rem / -2);
+        width: 0;
+      }
+    }
+    &:not(:last-child):after { /* this handles the head of the arrow */
+      border-bottom: calc(3rem / 2) solid transparent;
+      border-left: calc(3rem / 2) solid #eee;
+      border-top: calc(3rem / 2) solid transparent;
+      bottom: 0;
+      content: " ";
+      height: 0;
+      position: absolute;
+      right: calc(3rem / -2);
+      width: 0;
+    }
+    &.active {
+      background-color: #d7d7d7;
+      &:before {
+        border-bottom-color: #d7d7d7;
+        border-top-color: #d7d7d7;
+      }
+      &:after {
+        border-left-color: #d7d7d7;
+      }
+      .step-name {
+        font-weight: bold;
+      }
+    }
+    &.complete {
+      .step-number {
+        background-color: #b8e986;
+      }
+    }
+  }
+}
+
+.foto {
+	overflow: hidden;
+    //width: 295px;
+    max-width: 100%;
+    border-radius: 3px;
+	a {
+		display: block;
+    	width: 100%;
+	}
+}
+
+.box{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+	left: -12px;
+    width: 100%;
+    height: 100%;
+}
+
+.box-footer{
+	position: absolute;
+    z-index: -1;
+    top: 0;
+	left: 0;
+    width: 100%;
+    height: 100%;
+	 img {
+		height: 245px !important;
+		width: 100%;
+	 }
+}
+
+.relat {
+	position: relative;
+	color: floralwhite;
+}

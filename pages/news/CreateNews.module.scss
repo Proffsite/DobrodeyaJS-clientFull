@@ -1,0 +1,20 @@
+.titleField {
+	width: 100%;
+	margin-bottom: 10px;
+  
+	&:before, &:after {
+	   display: none !important;
+	}
+  
+	input {
+	  font-size: 36px !important;
+	  font-weight: 700 !important;
+	}
+  }
+
+  .editor {
+	width: 100%;
+	font-size: 18px;
+	height: calc(50vh - 220px);
+	margin-bottom: 10px;
+  }
