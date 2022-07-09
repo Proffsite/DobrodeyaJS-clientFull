@@ -23,12 +23,11 @@ export type ResponseUser = {
 // };
 
 export type NewsItem = {
-	title: string,
-	body: string,
-	picture: string,
-	description: string;
-	tags: null | string;
 	id: number;
+	title: string;
+	body: string;
+	picture: string;
+	tags: null | string;
 	views: number;
 	user: ResponseUser;
 	createdAt: string;

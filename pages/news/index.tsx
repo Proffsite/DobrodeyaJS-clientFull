@@ -20,13 +20,19 @@ interface NewsProps {
 const NewsPage: NextPage<NewsProps> = ({ news }) => {
 
 	const router = useRouter()
+	const userData = useTypedSelector(state => state.user.data)
 
 	return (
 		<MainLayout title={"Новости - Добродея"}>
 			Новости
-			<button onClick={() => router.push('/news/create')}>
-				Добавить
-			</button>
+			{
+				!userData
+					? ''
+					: <button onClick={() => router.push('/news/create')}>
+						Добавить
+					</button>
+			}
+
 			<NewList news={news} />
 		</MainLayout>
 	);

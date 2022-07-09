@@ -26,9 +26,9 @@ const NewItem: React.FC<NewItemProps> = ({ new1, active = false }) => {
 						<img className="full-width" src={'http://localhost:7777/' + new1.picture} />
 					</a></Link>
 			</div>
-			<div>Размещено:{new1.createdAt}</div>
+			<div>Размещено:   {new1.createdAt}</div>
 			<div>{new1.title}</div>
-			<div style={{ fontSize: 12, color: 'gray' }}>{new1.body}</div>
+			<div style={{ fontSize: 16, color: '#333' }}>{new1.body}</div>
 			{/* <button
 				className=""
 				onClick={onRemoveFromBasket}

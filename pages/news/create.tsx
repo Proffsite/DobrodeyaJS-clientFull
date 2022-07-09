@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from "axios";
 import { useRouter } from "next/router";
 import { Button, Input } from '@material-ui/core';
 
@@ -12,6 +11,7 @@ import { Api } from '../../utils/api';
 import { NewsItem } from '../../utils/api/types';
 import { GetServerSideProps } from 'next';
 import { title } from 'process';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 interface CreateNewsProps {
 	data?: NewsItem;
@@ -28,18 +28,16 @@ const CreateNews: React.FC<CreateNewsProps> = ({ data }) => {
 	const onAddNew = async () => {
 		try {
 			setLoading(true);
-			const obj = {
-				title,
-				body,
-				picture
-			};
-			console.log(picture, 'picture upload')
+			const formData = new FormData()
+			formData.append('title', title)
+			formData.append('body', body)
+			formData.append('picture', picture)
 			if (!data) {
-				const data = await Api().new.create(obj);
+				const data = await Api().new.create(formData);
 				await router.push(`/news`);
 			}
 		} catch (err) {
-			console.warn('Create new', err);
+			console.warn('Create new error', err);
 			alert(err);
 		} finally {
 			setLoading(false);
@@ -48,36 +46,41 @@ const CreateNews: React.FC<CreateNewsProps> = ({ data }) => {
 	};
 	return (
 		<MainLayout>
-			<div className='container'>
-				<div className='row align-items-center'>
-					<div className='col-sm-6 col-md-6'>
-						<label htmlFor="nameNews">Введите заглавие новости</label>
-						<Input
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-							classes={{ root: styles.titleField }}
-							placeholder="Заголовок"
-						/>
+			<div className='row align-items-center'>
+				<div className='col-sm-6 col-md-6'>
+					<Input
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						classes={{ root: styles.titleField }}
+						placeholder="Заголовок новости"
+					/>
 
 
-						<Input
-							value={body}
-							onChange={(e) => setBody(e.target.value)}
-							classes={{ root: styles.editor }}
-							placeholder="Текст новости"
-						/>
+					<Input
+						value={body}
+						onChange={(e) => setBody(e.target.value)}
+						classes={{ root: styles.editor }}
+						placeholder="Текст новости"
+					/>
 
-						<FileUpload setFile={setPicture} accept="image/*">
-							<button>Загрузить изображение</button>
-						</FileUpload>
+					<FileUpload setFile={setPicture} accept="image/*">
+						<button>Загрузить изображение</button>
+					</FileUpload>
+					{
+						!picture
+							? ''
+							: <Alert severity="success">
+								<AlertTitle>Файл успешно загружен</AlertTitle>
+								Нажмите "сохранить" <strong>чтобы разместить статью!</strong>
+							</Alert>
+					}
 
-						<Button disabled={isLoading || !title || !body} onClick={onAddNew} variant="contained" color="primary">
-							Сохранить
-						</Button>
-					</div>
+
+					<Button disabled={isLoading || !title || !body || !picture} onClick={onAddNew} variant="contained" color="secondary" classes={{ root: styles.buttonMain }}>
+						Сохранить
+					</Button>
 				</div>
 			</div>
-
 		</MainLayout>
 	);
 };

@@ -7,7 +7,6 @@ import { NextPage } from 'next';
 import animal_img from '../public/main_animal.png';
 import HelpStatic from '../components/static/HelpStatic';
 
-import { useTypedSelector } from "../hooks/useTypedSelector";
 import AnimalList from '../components/AnimalList';
 import NewList from '../components/NewList';
 import BGImage from '../components/BGimage';
@@ -16,16 +15,12 @@ import outPriut from '../public/out_priut.png';
 
 
 import { GetServerSideProps } from 'next';
-import { fetchAnimals } from '../store/actions-creators/animal';
-import { fetchNews } from '../store/actions-creators/new';
-import { fetchUser } from '../store/actions-creators/user';
-import { NextThunkDispatch, wrapper } from '../store';
-
 
 import MainLayout from '../layouts/MainLayout';
 import { Api } from '../utils/api';
 import { INew } from '../types/new';
 import { IAnimal } from '../types/animal';
+import VK, {Group} from 'react-vk';
 
 interface MainProps {
 	newsItem: INew[];
@@ -40,15 +35,12 @@ const BgImage = dynamic(() => import("../components/BGimage"), {
 
 const Main: NextPage<MainProps> = ({ newsItem, animalsItem }) => {
 
-	const NotHomeAnimal = animalsItem.filter(item => item.category !== 'Home').length;
-	const HomeAnimal = animalsItem.filter(item => item.category == 'Home').length;
+	//const NotHomeAnimal = animalsItem.filter(item => item.category !== 'Home').length;
+	//const HomeAnimal = animalsItem.filter(item => item.category == 'Home').length;
 
-	// if (error) {
-	// 	return <MainLayout>
-	// 		<h1>{error}</h1>
-	// 	</MainLayout>
-	// }
 
+	const HomeAnimal = 0;
+	const NotHomeAnimal = 0;
 	return (
 		<>
 			<MainLayout>
@@ -122,7 +114,9 @@ const Main: NextPage<MainProps> = ({ newsItem, animalsItem }) => {
 								</div>
 							</div>
 							<div className="block_inner">
-
+							<VK>
+											<Group groupId={172407402} />
+											 </VK>
 							</div>
 						</div>
 					</div>
@@ -157,11 +151,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	try {
 
 		const newsItem = await Api().new.getAll();
-		const animalsItem = await Api().animal.getAll();
+		const data = await Api().animal.getAll();
+		console.log(data);
 		return {
 			props: {
 				newsItem,
-				animalsItem,
+				animalsItem: data.animals.filter(item => item.category !== 'Home'),
 			},
 		};
 	} catch (error) {

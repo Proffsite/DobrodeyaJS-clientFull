@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import Image from 'next/image'
-import axios from "axios";
+import React from 'react';
+import Image from 'next/image';
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 
-
-import { INew } from "../../types/new";
-import { useInput } from "../../hooks/useInput";
 import MainLayout from '../../layouts/MainLayout';
 import { Api } from '../../utils/api';
 
@@ -18,10 +14,10 @@ const NewPage = ({ newsItem }) => {
 			keywords={'Приют, добродея, ' + newsItem.title}
 		>
 			<button
-				style={{ fontSize: 32 }}
+				style={{ fontSize: 32, margin: 10 }}
 				onClick={() => router.back()}
 			>
-				К списку
+				Назад
 			</button>
 			<div className="container">
 				<div className="row">
@@ -33,10 +29,10 @@ const NewPage = ({ newsItem }) => {
 							width={525}
 							height={700} />
 					</div>
-					<div className="col-md-7 col-sm-12 p-0 mb-3 ps-3">
+					<div className="col-md-7 col-sm-12 p-0 mb-3 ps-3 animal">
 						<h1>{newsItem.title}</h1>
-						<div>{newsItem.body}</div>
-						<div>Размещено: {newsItem.createdAt}</div>
+						<div className='body'>{newsItem.body}</div>
+						<div className='data'>Размещено: {newsItem.createdAt.slice(0, 10)}</div>
 					</div>
 				</div>
 			</div>

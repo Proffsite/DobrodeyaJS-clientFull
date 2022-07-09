@@ -17,14 +17,20 @@ interface AnimalsProps {
 
 const AnimalsPage: NextPage<AnimalsProps> = ({ animals }) => {
 	const router = useRouter()
+	const userData = useTypedSelector(state => state.user.data);
 	//const { animals, error } = useTypedSelector(state => state.animal);
 	return (
 		<>
 			<MainLayout title={"Список животных - Добродея"}>
-				Список животных
-				<button onClick={() => router.push('/animals/create')}>
-					Загрузить
-				</button>
+				<h1>Список животных</h1>
+				{
+					!userData
+						? ''
+						: <button onClick={() => router.push('/animals/create')}>
+							Загрузить
+						</button>
+				}
+
 				<AnimalList animals={animals} />
 			</MainLayout>
 
@@ -34,10 +40,11 @@ const AnimalsPage: NextPage<AnimalsProps> = ({ animals }) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	try {
-		const animals = await Api().animal.getAll();
+		const { category } = ctx.query
+		const data2 = await Api().animal.getAll(category);
 		return {
 			props: {
-				animals,
+				animals: data2.animals,
 			}
 		}
 	} catch (error) {

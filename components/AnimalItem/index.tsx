@@ -1,9 +1,7 @@
 import React from 'react';
-import { IAnimal } from "../types/animal";
+import { IAnimal } from "../../types/animal";
 import { useRouter } from "next/router";
-import { useDispatch } from 'react-redux';
-import { animalsDelete } from '../store/actions-creators/animal';
-import { string } from 'yup/lib/locale';
+import { animalsDelete } from '../../store/actions-creators/animal';
 
 interface AnimalItemProps {
 	animal: IAnimal;
@@ -12,20 +10,16 @@ interface AnimalItemProps {
 
 const AnimalItem: React.FC<AnimalItemProps> = ({ animal, active = false }) => {
 	const router = useRouter()
-	const dispatch = useDispatch()
-
-
 	return (
-
 		<div className="col-lg-3 col-md-6 col-sm-12 my-3">
 			<div className="foto">
 				<a onClick={() => router.push('/animals/' + animal.id)}>
 					<img className="full-width" src={'http://localhost:7777/' + animal.picture} />
 				</a>
 			</div>
-			<div>Размещено:{animal.createdAt}</div>
-			<div>{animal.title}</div>
-			<div style={{ fontSize: 12, color: 'gray' }}>{animal.body}</div>
+			<div className="data">Размещено:   {animal.createdAt}</div>
+			<div><h2>{animal.title}</h2></div>
+			<div style={{ fontSize: 16, color: '#333' }}>{animal.body}</div>
 			{/* <button
 				className=""
 				onClick={onRemoveFromBasket}

@@ -6,17 +6,10 @@ import "../css/customcss.scss";
 
 import { NextThunkDispatch, wrapper } from '../store';
 
-
-import { useDispatch } from 'react-redux';
-import { parseCookies } from 'nookies';
-import { UserApi } from '../utils/api/user';
 import { setUserData } from '../store/actions-creators/user';
 import { Api } from '../utils/api';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { theme } from '../theme';
-import { fetchAnimals } from '../store/actions-creators/animal';
-import { fetchNews } from '../store/actions-creators/new';
-import { NewApi } from '../utils/api/new';
 
 const App = ({ Component, pageProps }: AppProps) => {
 	return (

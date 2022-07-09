@@ -7,9 +7,9 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const menuItemsLeft = [
 	{ text: 'О Приюте', href: '/' },
-	{ text: 'Кошки', href: '/animals?keyword=Cats' },
-	{ text: 'Собаки', href: '/animals?keyword=Dogs' },
-	{ text: 'Уже дома', href: '/home?keyword=Home' }
+	{ text: 'Кошки', href: '/animals?category=Cats' },
+	{ text: 'Собаки', href: '/animals?category=Dogs' },
+	{ text: 'Уже дома', href: '/animals?category=Home' }
 ]
 const menuItemsRight = [
 	{ text: 'Как помочь приюту?', href: '/help' },
@@ -22,8 +22,8 @@ const menuItemsRight = [
 const Navbar: React.FC = () => {
 	const router = useRouter();
 
-	 const userData = useTypedSelector(state => state.user.data);
-	
+	const userData = useTypedSelector(state => state.user.data);
+
 	return (
 		<>
 			<header>

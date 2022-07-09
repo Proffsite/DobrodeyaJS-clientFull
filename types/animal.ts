@@ -1,15 +1,16 @@
+import { ResponseUser } from '../utils/api/types';
 
 export interface IAnimal {
-	id: number;
+	id: string;
 	title: string;
 	body: string;
-	description: string;
 	age: string;
 	picture: string;
 	sex: string;
 	category: string;
 	tags: null | string;
 	views: number;
+	user: ResponseUser;
 	createdAt: string;
 	updatedAt: string;
 }
